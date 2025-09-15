@@ -1,32 +1,47 @@
-<!DOCTYPE html>
-<html lang-="pt-br">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-    content="width=device-width,initial-scale=1.0">
-    <body>
-        <header>
-            <h1>MatheMatch</h1>
-        </header>
-        <main>
-            <div id="question-container">
-                <p id="question"> </p>
-                <input type="text" id="answer"
-                placeholder="sua resposta">
-                <button id="submit">Enviar</button>
-            </div>
-            <p id="feedback"></p>
-    
-        </main>
-        <script src="script.js"></script>
-       
-       
-    </body>
-    </html>
-    <title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jogo das contas</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
 
-    </title>
+<body>
 
-</head><
+<p align="center"><img border="0" src="matkids.gif" width="230" height="50"></p>
+<p align="center"><b><font face="Arial" color="#000080" size="3">Jogo das contas</font></b></p>
+
+<p align="center"><font face="Arial" size="2">Digite o seu nome e escolha as
+operações<br>
+que você quer praticar:</font></p>
+
+
+<div align="center">
+  <table border="0" cellpadding="6" cellspacing="0" width="95%" bgcolor="#FFF9F2">
+    <tr>
+      <td width="100%" align="center">
+      <form method="POST" action="jogo.php">
+  <p align="center"><font face="Arial" size="2" color="#0000FF">Seu nome:<br>
+  </font><input type="text" name="nome" size="20"></p>
+  
+  <p align="center"><font face="Arial" size="2" color="#0000FF">Operações:<br>
+  &nbsp;&nbsp; <br>
+  </font><font face="Arial" size="2"><input type="radio" value="1" name="op" checked>Adição&nbsp;&nbsp;
+  <input type="radio" value="2" name="op">Subtração&nbsp;&nbsp; <input type="radio" value="3" name="op">Multiplicação&nbsp;&nbsp;
+  <input type="radio" value="4" name="op">Divisão&nbsp;&nbsp; <input type="radio" value="5" name="op">Todas<br>
+<input type="hidden" value="0" name="etapa">
+  &nbsp;&nbsp; <br>
+  </font><input type="submit" value="Quero praticar!!!" name="envia"></p>
+</form>
+
+      
+      </td>
+    </tr>
+  </table>
+  
+</div>
+<p align="center"><a href="javascript:window.close();">Sair</a></p>
+
+</body>
 
 </html>
