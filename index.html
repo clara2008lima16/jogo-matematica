@@ -144,14 +144,14 @@
         const answerInput = document.getElementById("answer");
 
         function startTimer() {
-            clearInterval(timer); // Limpa qualquer temporizador existente
+            clearInterval(timer); // Clear any existing timer
             timeLeft = 15;
-            timerElement.textContent = ⏳ Tempo: ${timeLeft}s;
+            timerElement.textContent = `⏳ Tempo: ${timeLeft}s`;
             timerElement.classList.remove('low-time');
 
             timer = setInterval(() => {
                 timeLeft--;
-                timerElement.textContent = ⏳ Tempo: ${timeLeft}s;
+                timerElement.textContent = `⏳ Tempo: ${timeLeft}s`;
                 if (timeLeft <= 5) {
                     timerElement.classList.add('low-time');
                 }
@@ -159,20 +159,20 @@
                 if (timeLeft <= 0) {
                     clearInterval(timer);
                     timerElement.textContent = "⏰ Tempo esgotado!";
-                    checkAnswer(); // Verifica a resposta automaticamente quando o tempo acaba
+                    checkAnswer(); // Automatically check the answer when time runs out
                 }
             }, 1000);
         }
 
         function generateQuestion() {
-            startTimer(); // Inicia o temporizador para a nova pergunta
+            startTimer(); // Start the timer for the new question
             
             let max = parseInt(document.getElementById("difficulty").value);
             const operators = ["+", "-", "×", "÷"];
             operator = operators[Math.floor(Math.random() * operators.length)];
 
             if (operator === "÷") {
-                // Para garantir que a resposta seja um número inteiro
+                // To ensure whole number division, calculate the numbers this way:
                 correctAnswer = Math.floor(Math.random() * max) + 1;
                 num2 = Math.floor(Math.random() * max) + 1;
                 num1 = correctAnswer * num2;
@@ -185,9 +185,9 @@
                         correctAnswer = num1 + num2;
                         break;
                     case "-":
-                        // Garante que a resposta seja positiva
+                        // Ensure the result is not negative for easier play
                         if (num1 < num2) {
-                            [num1, num2] = [num2, num1]; // Inverte os números
+                            [num1, num2] = [num2, num1]; // Swap the numbers
                         }
                         correctAnswer = num1 - num2;
                         break;
@@ -197,19 +197,18 @@
                 }
             }
 
-            document.getElementById("question").textContent = ${num1} ${operator} ${num2} = ?;
+            document.getElementById("question").textContent = `${num1} ${operator} ${num2} = ?`;
             answerInput.value = "";
             document.getElementById("feedback").textContent = "";
-            answerInput.disabled = false; // Habilita o campo de resposta
-            answerInput.focus(); // Coloca o cursor no campo de resposta
+            answerInput.focus(); // Automatically focus on the input field
         }
 
         function checkAnswer() {
             const userAnswer = parseFloat(answerInput.value);
             const feedback = document.getElementById("feedback");
 
-            if (answerInput.disabled) return; // Impede a dupla verificação
-            answerInput.disabled = true; // Desabilita o campo após a verificação
+            if (answerInput.disabled) return; // Prevent double-checking
+            answerInput.disabled = true; // Disable input after checking
 
             clearInterval(timer);
 
@@ -218,27 +217,27 @@
                 feedback.className = "correct";
                 score++;
             } else {
-                feedback.textContent = ❌ Errado! Resposta certa: ${correctAnswer};
+                feedback.textContent = `❌ Errado! Resposta certa: ${correctAnswer}`;
                 feedback.className = "wrong";
                 score--;
             }
 
-            document.getElementById("score").textContent = Pontuação: ${score};
+            document.getElementById("score").textContent = `Pontuação: ${score}`;
         }
 
         function nextQuestion() {
-            answerInput.disabled = false; // Re-habilita o campo
+            answerInput.disabled = false; // Re-enable input
             generateQuestion();
         }
 
-        // Listener para a tecla "Enter"
+        // Event listener for the "Enter" key
         answerInput.addEventListener("keyup", function(event) {
             if (event.key === "Enter") {
                 checkAnswer();
             }
         });
 
-        // Inicializa o jogo
+        // Initialize the game
         generateQuestion();
     </script>
 </body>
