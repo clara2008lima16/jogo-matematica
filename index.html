@@ -1,98 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matematch</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #4B0082, #6A0DAD);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-<!DOCTYPE html><html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Matematch</title>
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif}
-    body{background:#0f172a;color:#f1f5f9;line-height:1.6}
-    header{background:#1e293b;padding:15px;text-align:center;box-shadow:0 4px 6px rgba(0,0,0,0.4)}
-    header h1{font-size:2rem;color:#38bdf8}
-    .banner{width:100%;max-height:350px;object-fit:cover;display:block}
-    section{padding:50px 20px;max-width:1000px;margin:auto}
-    h2{color:#38bdf8;margin-bottom:20px}
-    .btn{display:inline-block;background:#38bdf8;color:#0f172a;padding:10px 20px;margin-top:10px;border-radius:8px;text-decoration:none;font-weight:bold;transition:0.3s}
-    .btn:hover{background:#0ea5e9;color:#fff}
-    form{display:flex;flex-direction:column;gap:15px;margin-top:20px}
-    input,textarea{padding:12px;border-radius:10px;border:1px solid #334155;background:#0f172a;color:#f1f5f9}
-    input::placeholder,textarea::placeholder{color:#94a3b8}
-    footer{background:#1e293b;color:#94a3b8;text-align:center;padding:15px;margin-top:40px}
+    .container {
+      background: #8A2BE2;
+      padding: 2rem;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      width: 90%;
+      max-width: 450px;
+    }
+
+    h1 {
+      margin-bottom: 1rem;
+      font-size: 2.2rem;
+    }
+
+    #question {
+      font-size: 1.6rem;
+      margin: 1rem 0;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 1.2rem;
+      width: 100px;
+      text-align: center;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+    }
+
+    .buttons {
+      margin-top: 1rem;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 0.5rem;
+      font-size: 1rem;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-check {
+      background: #fff;
+      color: #000;
+    }
+    .btn-check:hover {
+      background: #ddd;
+    }
+
+    .btn-next {
+      background: #000;
+      color: #fff;
+    }
+    .btn-next:hover {
+      background: #333;
+    }
+
+    #feedback {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .correct {
+      color: #4CAF50;
+    }
+    .wrong {
+      color: #F44336;
+    }
+
+    #score {
+      margin-top: 1rem;
+      font-size: 1.3rem;
+    }
+
+    #timer {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    #difficulty {
+      margin-bottom: 1rem;
+      padding: 8px;
+      font-size: 1rem;
+      border-radius: 10px;
+      border: none;
+    }
   </style>
 </head>
-<body>  <header>
-    <h1>Bem-vindo ao Matematch</h1>
-  </header>  <!-- Banner colocado -->  <img src="<!DOCTYPE html><html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Matematch</title>
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif}
-    body{background:#0f172a;color:#f1f5f9;line-height:1.6}
-    header{background:#1e293b;padding:15px;text-align:center;box-shadow:0 4px 6px rgba(0,0,0,0.4)}
-    header h1{font-size:2rem;color:#38bdf8}
-    .banner{width:100%;max-height:350px;object-fit:cover;display:block}
-    section{padding:50px 20px;max-width:1000px;margin:auto}
-    h2{color:#38bdf8;margin-bottom:20px}
-    .btn{display:inline-block;background:#38bdf8;color:#0f172a;padding:10px 20px;margin-top:10px;border-radius:8px;text-decoration:none;font-weight:bold;transition:0.3s}
-    .btn:hover{background:#0ea5e9;color:#fff}
-    form{display:flex;flex-direction:column;gap:15px;margin-top:20px}
-    input,textarea{padding:12px;border-radius:10px;border:1px solid #334155;background:#0f172a;color:#f1f5f9}
-    input::placeholder,textarea::placeholder{color:#94a3b8}
-    footer{background:#1e293b;color:#94a3b8;text-align:center;padding:15px;margin-top:40px}
-  </style>
-</head>
-<body>  <header>
-    <h1>Bem-vindo ao Matematch</h1>
-  </header>  <!-- Banner colocado -->  <img src="WhatsApp Image 2025-09-15 at 21.06.46 copy.jpg" alt="Banner Matematch" class="banner">  <section>
-    <h2>Sobre o Projeto</h2>
-    <p>O <strong>Matematch</strong> é um projeto voltado para despertar o interesse pela Matemática de forma divertida e acessível. Aqui você encontra conteúdo, desafios e atividades criativas.</p>
-  </section>  <section>
-    <h2>Contato</h2>
-    <p>Envie sua mensagem:</p>
-    <form>
-      <input type="text" placeholder="Seu nome" required>
-      <input type="email" placeholder="Seu e-mail" required>
-      <textarea rows="5" placeholder="Sua mensagem" required></textarea>
-      <button type="submit" class="btn">Enviar</button>
-    </form>
-    <p id="status"></p>
-  </section>  <footer>
-    <p>&copy; 2025 Matematch. Todos os direitos reservados.</p>
-  </footer>  <script>
-    const form=document.querySelector('form');
-    const status=document.getElementById('status');
-    form.addEventListener('submit',e=>{
-      e.preventDefault();
-      status.textContent='Mensagem enviada (simulada) com sucesso!';
-      setTimeout(()=>status.textContent='',6000);
-      form.reset();
-    });
-  </script></body>
-</html>" alt="Banner Matematch" class="banner">  <section>
-    <h2>Sobre o Projeto</h2>
-    <p>O <strong>Matematch</strong> é um projeto voltado para despertar o interesse pela Matemática de forma divertida e acessível. Aqui você encontra conteúdo, desafios e atividades criativas.</p>
-  </section>  <section>
-    <h2>Contato</h2>
-    <p>Envie sua mensagem:</p>
-    <form>
-      <input type="text" placeholder="Seu nome" required>
-      <input type="email" placeholder="Seu e-mail" required>
-      <textarea rows="5" placeholder="Sua mensagem" required></textarea>
-      <button type="submit" class="btn">Enviar</button>
-    </form>
-    <p id="status"></p>
-  </section>  <footer>
-    <p>&copy; 2025 Matematch. Todos os direitos reservados.</p>
-  </footer>  <script>
-    const form=document.querySelector('form');
-    const status=document.getElementById('status');
-    form.addEventListener('submit',e=>{
-      e.preventDefault();
-      status.textContent='Mensagem enviada (simulada) com sucesso!';
-      setTimeout(()=>status.textContent='',6000);
-      form.reset();
-    });
-  </script></body>
+<body>
+  <div class="container">
+    <h1>🎮 Matematch</h1>
+
+    <label for="difficulty">Dificuldade:</label>
+    <select id="difficulty" onchange="generateQuestion()">
+      <option value="10">Fácil (1-10)</option>
+      <option value="50">Médio (1-50)</option>
+      <option value="100">Difícil (1-100)</option>
+    </select>
+
+    <p id="question">Carregando...</p>
+    <input type="number" id="answer" placeholder="?" />
+    <div class="buttons">
+      <button class="btn-check" onclick="checkAnswer()">Verificar</button>
+      <button class="btn-next" onclick="nextQuestion()">Próxima</button>
+    </div>
+
+    <p id="feedback"></p>
+    <p id="timer">⏳ Tempo: 15s</p>
+    <p id="score">Pontuação: 0</p>
+  </div>
+
+  <script>
+    let num1, num2, operator, correctAnswer;
+    let score = 0;
+    let timeLeft = 15;
+    let timer;
+
+    function generateQuestion() {
+      clearInterval(timer);
+      timeLeft = 15;
+      document.getElementById("timer").textContent = ⏳ Tempo: ${timeLeft}s;
+
+      let max = parseInt(document.getElementById("difficulty").value);
+      num1 = Math.floor(Math.random() * max) + 1;
+      num2 = Math.floor(Math.random() * max) + 1;
+      const operators = ["+", "-", "×", "÷"];
+      operator = operators[Math.floor(Math.random() * operators.length)];
+
+      switch(operator) {
+        case "+":
+          correctAnswer = num1 + num2;
+          break;
+        case "-":
+          correctAnswer = num1 - num2;
+          break;
+        case "×":
+          correctAnswer = num1 * num2;
+          break;
+        case "÷":
+          correctAnswer = num1; // garante divisão exata
+          num1 = num1 * num2;
+          break;
+      }
+
+      document.getElementById("question").textContent = ${num1} ${operator} ${num2} = ?;
+      document.getElementById("answer").value = "";
+      document.getElementById("feedback").textContent = "";
+
+      startTimer();
+    }
+
+    function startTimer() {
+      timer = setInterval(() => {
+        timeLeft--;
+        document.getElementById("timer").textContent = ⏳ Tempo: ${timeLeft}s;
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          document.getElementById("feedback").textContent = ⏰ Tempo esgotado! Resposta: ${correctAnswer};
+          document.getElementById("feedback").className = "wrong";
+          score--;
+          document.getElementById("score").textContent = Pontuação: ${score};
+        }
+      }, 1000);
+    }
+
+    function checkAnswer() {
+      const userAnswer = parseFloat(document.getElementById("answer").value);
+      const feedback = document.getElementById("feedback");
+
+      if (!document.getElementById("answer").value) return; // evita checar vazio
+
+      clearInterval(timer);
+
+      if (userAnswer === correctAnswer) {
+        feedback.textContent = "✔️ Correto!";
+        feedback.className = "correct";
+        score++;
+      } else {
+        feedback.textContent = ❌ Errado! Resposta certa: ${correctAnswer};
+        feedback.className = "wrong";
+        score--;
+      }
+
+      document.getElementById("score").textContent = Pontuação: ${score};
+    }
+
+    function nextQuestion() {
+      generateQuestion();
+    }
+
+    // Inicializa o jogo
+    generateQuestion();
+  </script>
+</body>
 </html>
