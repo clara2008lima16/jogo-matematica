@@ -124,7 +124,7 @@
       <option value="100">Difícil (1-100)</option>
     </select>
 
-    <p id="question">carregando...</p>
+    <p id="question"></p>
     <input type="number" id="answer" placeholder="?" />
     <div class="buttons">
       <button class="btn-check" onclick="checkAnswer()">Verificar</button>
@@ -132,7 +132,7 @@
     </div>
 
     <p id="feedback"></p>
-    <p id="timer">⏳ Tempo: 15s</p>
+    <p id="timer">⏳ Tempo: 30s</p>
     <p id="score">Pontuação: 0</p>
   </div>
 
@@ -141,7 +141,7 @@
     let score = 0;
     let timeLeft = 30;
     let timer;
-
+    
 function generateQuestion() {
       clearInterval(timer);
       timeLeft = 30;
