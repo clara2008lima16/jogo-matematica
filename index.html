@@ -124,7 +124,7 @@
       <option value="100">Difícil (1-100)</option>
     </select>
 
-    <p id="question"></p>
+    <p id="question">carregando...</p>
     <input type="number" id="answer" placeholder="?" />
     <div class="buttons">
       <button class="btn-check" onclick="checkAnswer()">Verificar</button>
@@ -139,12 +139,12 @@
   <script>
     let num1, num2, operator, correctAnswer;
     let score = 0;
-    let timeLeft = 15;
+    let timeLeft = 30;
     let timer;
 
-    function generateQuestion() {
+function generateQuestion() {
       clearInterval(timer);
-      timeLeft = 15;
+      timeLeft = 30;
       document.getElementById("timer").textContent = ⏳ Tempo: ${timeLeft}s;
 
       let max = parseInt(document.getElementById("difficulty").value);
@@ -176,7 +176,7 @@
     
     }
 
-   let timeLeft = 10; // segundos
+   let timeLeft = 30; // segundos
 const timerElement = document.getElementById("timer");
 
 function startTimer() {
