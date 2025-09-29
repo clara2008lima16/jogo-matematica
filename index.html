@@ -124,86 +124,80 @@
             <option value="100">Difícil (100)</option>
         </select>
 
-        <p id="question">Carregando...</p>
-        <input type="number" id="answer" placeholder="?" />
-        <div class="buttons">
-            <button class="btn-check" onclick="checkAnswer()">Verificar</button>
-            <button class="btn-next" onclick="nextQuestion()">Próxima</button>
-        </div>
-
-        <p id="feedback"></p>
-        <p id="timer">⏳ Tempo: 30s</p>
-        <p id="score">Pontuação: 0</p>
+           <p id="question">Carregando...</p>
+    <input type="number" id="answer" placeholder="?" />
+    <div class="buttons">
+      <button class="btn-check" onclick="checkAnswer()">Verificar</button>
+      <button class="btn-next" onclick="nextQuestion()">Próxima</button>
     </div>
 
-    <script>
-        let num1, num2, operator, correctAnswer;
-        let score = 0;
-        let timeLeft = 30;
-        let timer;
-        const timerElement = document.getElementById("timer");
-        const answerInput = document.getElementById("answer");
+    <p id="feedback"></p>
+    <p id="timer">⏳ Tempo: 30s</p>
+    <p id="score">Pontuação: 0</p>
+  </div>
 
-        function startTimer() {
-            clearInterval(timer); // Clear any existing timer
-            timeLeft = 30;
-            timerElement.textContent = `⏳ Tempo: ${timeLeft}s`;
-            timerElement.classList.remove('low-time');
+  <script>
+    let num1, num2, operator, correctAnswer;
+    let score = 0;
+    let timeLeft = 30;
+    let timer;
 
-            timer = setInterval(() => {
-                timeLeft--;
-                timerElement.textContent = `⏳ Tempo: ${timeLeft}s`;
-                if (timeLeft <= 5) {
-                    timerElement.classList.add('low-time');
-                }
+    function generateQuestion() {
+      clearInterval(timer);
+      timeLeft = 30;
+      document.getElementById("timer").textContent = ⏳ Tempo: ${timeLeft}s;
 
-                if (timeLeft <= 0) {
-                    clearInterval(timer);
-                    timerElement.textContent = "⏰ Tempo esgotado!";
-                    checkAnswer(); // Automatically check the answer when time runs out
-                }
-            }, 1000);
+      let max = parseInt(document.getElementById("difficulty").value);
+      num1 = Math.floor(Math.random() * max) + 1;
+      num2 = Math.floor(Math.random() * max) + 1;
+      const operators = ["+", "-", "×", "÷"];
+      operator = operators[Math.floor(Math.random() * operators.length)];
+
+      switch(operator) {
+        case "+":
+          correctAnswer = num1 + num2;
+          break;
+        case "-":
+          correctAnswer = num1 - num2;
+          break;
+        case "×":
+          correctAnswer = num1 * num2;
+          break;
+        case "÷":
+          correctAnswer = num1; // garante divisão exata
+          num1 = num1 * num2;
+          break;
+      }
+
+      document.getElementById("question").textContent = ${num1} ${operator} ${num2} = ?;
+      document.getElementById("answer").value = "";
+      document.getElementById("feedback").textContent = "";
+
+    
+    }
+
+   let timeLeft = 30; // segundos
+const timerElement = document.getElementById("timer");
+
+function startTimer() {
+    timerElement.textContent = Tempo: ${timeLeft};
+
+    const countdown = setInterval(() => {
+        timeLeft--;
+        timerElement.textContent = Tempo: ${timeLeft};
+
+        if (timeLeft <= 0) {
+            clearInterval(countdown); // para o timer
+            timerElement.textContent = "⏰ Tempo esgotado!";
         }
+    }, 1000);
+}
 
-        function generateQuestion() {
-            startTimer(); // Start the timer for the new question
-            
-            let max = parseInt(document.getElementById("difficulty").value);
-            const operators = ["+", "-", "×", "÷"];
-            operator = operators[Math.floor(Math.random() * operators.length)];
+startTimer();
+    
+    
 
-            if (operator === "÷") {
-                // To ensure whole number division, calculate the numbers this way:
-                correctAnswer = Math.floor(Math.random() * max) + 1;
-                num2 = Math.floor(Math.random() * max) + 1;
-                num1 = correctAnswer * num2;
-            } else {
-                num1 = Math.floor(Math.random() * max) + 1;
-                num2 = Math.floor(Math.random() * max) + 1;
-
-                switch(operator) {
-                    case "+":
-                        correctAnswer = num1 + num2;
-                        break;
-                    case "-":
-                        // Ensure the result is not negative for easier play
-                        if (num1 < num2) {
-                            [num1, num2] = [num2, num1]; // Swap the numbers
-                        }
-                        correctAnswer = num1 - num2;
-                        break;
-                    case "×":
-                        correctAnswer = num1 * num2;
-                        break;
-                }
-            }
-
-            document.getElementById("question").textContent = `${num1} ${operator} ${num2} = ?`;
-            answerInput.value = "";
-            document.getElementById("feedback").textContent = "";
-            answerInput.focus(); // Automatically focus on the input field
-        }
-     function checkAnswer() {
+    function checkAnswer() {
       const userAnswer = parseFloat(document.getElementById("answer").value);
       const feedback = document.getElementById("feedback");
 
@@ -222,22 +216,14 @@
       }
 
       document.getElementById("score").textContent = Pontuação: ${score};
-     }
+    }
 
-        function nextQuestion() {
-            answerInput.disabled = false; // Re-enable input
-            generateQuestion();
-        }
+    function nextQuestion() {
+      generateQuestion();
+    }
 
-        // Event listener for the "Enter" key
-        answerInput.addEventListener("keyup", function(event) {
-            if (event.key === "Enter") {
-                checkAnswer();
-            }
-        });
-
-        // Initialize the game
-        generateQuestion();
-    </script>
+    // Inicializa o jogo
+    generateQuestion();
+  </script>
 </body>
 </html>
