@@ -205,26 +205,25 @@
         }
 
         function checkAnswer() {
-            const userAnswer = parseFloat(answerInput.value);
-            const feedback = document.getElementById("feedback");
+  const userAnswer = parseFloat(document.getElementById("answer").value);
+  const feedback = document.getElementById("feedback");
 
-            if (answerInput.disabled) return; // Prevent double-checking
-            answerInput.disabled = true; // Disable input after checking
+  if (!document.getElementById("answer").value) return; // evita checar vazio
 
-            clearInterval(timer);
+  clearInterval(timer);
 
-            if (userAnswer === correctAnswer) {
-                feedback.textContent = "✔️ Correto!";
-                feedback.className = "correct";
-                score++;
-            } else {
-                feedback.textContent = `❌ Errado! Resposta certa: ${correctAnswer}`;
-                feedback.className = "wrong";
-                score--;
-            }
+  if (Math.abs(userAnswer - correctAnswer) < 0.001) {
+    feedback.textContent = "✔️ Correto!";
+    feedback.className = "correct";
+    score++;
+  } else {
+    feedback.textContent = ❌ Errado! Resposta certa: ${correctAnswer};
+    feedback.className = "wrong";
+    if (score > 0) score--;
+  }
 
-            document.getElementById("score").textContent = `Pontuação: ${score}`;
-        }
+  document.getElementById("score").textContent = Pontuação: ${score};
+}
 
         function nextQuestion() {
             answerInput.disabled = false; // Re-enable input
