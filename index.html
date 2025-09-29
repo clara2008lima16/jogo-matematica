@@ -203,27 +203,26 @@
             document.getElementById("feedback").textContent = "";
             answerInput.focus(); // Automatically focus on the input field
         }
-{
-        function checkAnswer() 
-  const userAnswer = parseFloat(document.getElementById("answer").value);
-  const feedback = document.getElementById("feedback");
+   function checkAnswer() {
+      const userAnswer = parseFloat(document.getElementById("answer").value);
+      const feedback = document.getElementById("feedback");
 
-  if (!document.getElementById("answer").value) return; // evita checar vazio
+      if (!document.getElementById("answer").value) return; // evita checar vazio
 
-  clearInterval(timer);
+      clearInterval(timer);
 
-  if (Math.abs(userAnswer - correctAnswer) < 0.001) {
-    feedback.textContent = "✔️ Correto!";
-    feedback.className = "correct";
-    score++;
-  } else {
-    feedback.textContent = ❌ Errado! Resposta certa: ${correctAnswer};
-    feedback.className = "wrong";
-    if (score > 0) score--;
-  }
+      if (userAnswer === correctAnswer) {
+        feedback.textContent = "✔️ Correto!";
+        feedback.className = "correct";
+        score++;
+      } else {
+        feedback.textContent = ❌ Errado! Resposta certa: ${correctAnswer};
+        feedback.className = "wrong";
+        score--;
+      }
 
-  document.getElementById("score").textContent = Pontuação: ${score};
-}
+      document.getElementById("score").textContent = Pontuação: ${score};
+    }
 
         function nextQuestion() {
             answerInput.disabled = false; // Re-enable input
