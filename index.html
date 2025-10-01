@@ -131,21 +131,21 @@
         </div>
 
         <p id="feedback"></p>
-        <p id="timer">⏳ Tempo: 15s</p>
+        <p id="timer">⏳ Tempo: 30s</p>
         <p id="score">Pontuação: 0</p>
     </div>
 
     <script>
         let num1, num2, operator, correctAnswer;
         let score = 0;
-        let timeLeft = 15;
+        let timeLeft = 30;
         let timer;
         const timerElement = document.getElementById("timer");
         const answerInput = document.getElementById("answer");
 
         function startTimer() {
             clearInterval(timer); 
-            timeLeft = 15;
+            timeLeft = 30;
             timerElement.textContent = "⏳ Tempo: " + timeLeft + "s";
             timerElement.classList.remove('low-time');
 
