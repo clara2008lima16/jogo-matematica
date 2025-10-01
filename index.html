@@ -144,14 +144,14 @@
         const answerInput = document.getElementById("answer");
 
         function startTimer() {
-            clearInterval(timer); // Clear any existing timer
+            clearInterval(timer); 
             timeLeft = 15;
-            timerElement.textContent = ⏳ Tempo: {timeLeft}s;
+            timerElement.textContent = ⏳ Tempo: ${timeLeft}s;
             timerElement.classList.remove('low-time');
 
             timer = setInterval(() => {
                 timeLeft--;
-                timerElement.textContent = ⏳ Tempo: {timeLeft}s;
+                timerElement.textContent = ⏳ Tempo: ${timeLeft}s;
                 if (timeLeft <= 5) {
                     timerElement.classList.add('low-time');
                 }
@@ -159,20 +159,19 @@
                 if (timeLeft <= 0) {
                     clearInterval(timer);
                     timerElement.textContent = "⏰ Tempo esgotado!";
-                    checkAnswer(); // Automatically check the answer when time runs out
+                    checkAnswer(); 
                 }
             }, 1000);
         }
 
         function generateQuestion() {
-            startTimer(); // Start the timer for the new question
+            startTimer(); 
             
             let max = parseInt(document.getElementById("difficulty").value);
             const operators = ["+", "-", "×", "÷"];
             operator = operators[Math.floor(Math.random() * operators.length)];
 
             if (operator === "÷") {
-                // To ensure whole number division, calculate the numbers this way:
                 correctAnswer = Math.floor(Math.random() * max) + 1;
                 num2 = Math.floor(Math.random() * max) + 1;
                 num1 = correctAnswer * num2;
@@ -185,9 +184,8 @@
                         correctAnswer = num1 + num2;
                         break;
                     case "-":
-                        // Ensure the result is not negative for easier play
                         if (num1 < num2) {
-                            [num1, num2] = [num2, num1]; // Swap the numbers
+                            [num1, num2] = [num2, num1]; 
                         }
                         correctAnswer = num1 - num2;
                         break;
@@ -197,18 +195,18 @@
                 }
             }
 
-            document.getElementById("question").textContent = {num1} {operator} {num2} = ?;
+            document.getElementById("question").textContent = ${num1} ${operator} ${num2} = ?;
             answerInput.value = "";
             document.getElementById("feedback").textContent = "";
-            answerInput.focus(); // Automatically focus on the input field
+            answerInput.focus(); 
         }
 
         function checkAnswer() {
             const userAnswer = parseFloat(answerInput.value);
             const feedback = document.getElementById("feedback");
 
-            if (answerInput.disabled) return; // Prevent double-checking
-            answerInput.disabled = true; // Disable input after checking
+            if (answerInput.disabled) return; 
+            answerInput.disabled = true; 
 
             clearInterval(timer);
 
@@ -217,27 +215,25 @@
                 feedback.className = "correct";
                 score++;
             } else {
-                feedback.textContent = ❌ Errado! Resposta certa: {correctAnswer};
+                feedback.textContent = ❌ Errado! Resposta certa: ${correctAnswer};
                 feedback.className = "wrong";
                 score--;
             }
 
-            document.getElementById("score").textContent = Pontuação; {score};
+            document.getElementById("score").textContent = Pontuação: ${score};
         }
 
         function nextQuestion() {
-            answerInput.disabled = false; // Re-enable input
+            answerInput.disabled = false; 
             generateQuestion();
         }
 
-        // Event listener for the "Enter" key
         answerInput.addEventListener("keyup", function(event) {
             if (event.key === "Enter") {
                 checkAnswer();
             }
         });
 
-        // Initialize the game
         generateQuestion();
     </script>
 </body>
