@@ -125,10 +125,10 @@
       feedbackEl.textContent = '';
 
       timeLeft = 15;
-      timerEl.textContent = ⏳ Tempo: ${timeLeft}s;
+      timerEl.textContent = ⏳ Tempo: {timeLeft}s;
 
       const max = parseInt(difficultyEl.value, 10) || 10;
-      const operators = ['+', '-', '×', '÷'];
+      const operators = ['+', '-', 'X', '÷'];
       operator = operators[randInt(0, operators.length - 1)];
 
       if (operator === '÷') {
@@ -154,7 +154,7 @@
         }
       }
 
-      questionEl.textContent = ${num1} ${operator} ${num2} = ?;
+      questionEl.textContent ={num1} {operator} {num2};
       // inicia timer para a pergunta atual
       startTimer();
       // foca no input
@@ -166,7 +166,7 @@
       timerId = setInterval(() => {
         timeLeft--;
         if (timeLeft >= 0) {
-          timerEl.textContent = ⏳ Tempo: ${timeLeft}s;
+          timerEl.textContent = ⏳ Tempo: {timeLeft}s;
         }
         if (timeLeft <= 0) {
           clearInterval(timerId);
@@ -175,7 +175,7 @@
           answerEl.disabled = true;
           checkBtn.disabled = true;
           timerEl.textContent = "⏰ Tempo esgotado!";
-          feedbackEl.textContent = ⏰ Acabou! Resposta certa: ${correctAnswer};
+          feedbackEl.textContent = ⏰ Acabou! Resposta; certa: {correctAnswer};
           feedbackEl.className = 'wrong';
         }
       }, 1000);
@@ -204,12 +204,12 @@
         feedbackEl.className = 'correct';
         score++;
       } else {
-        feedbackEl.textContent = ❌ Errado! Resposta certa: ${correctAnswer};
+        feedbackEl.textContent = ❌ Errado! Resposta; certa: ${correctAnswer};
         feedbackEl.className = 'wrong';
         // evita pontuação negativa:
         score = Math.max(0, score - 1);
       }
-      scoreEl.textContent = Pontuação: ${score};
+      scoreEl.textContent = Pontuação; {score};
     }
 
     function nextQuestion() {
