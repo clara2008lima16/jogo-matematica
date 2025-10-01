@@ -125,7 +125,7 @@
       feedbackEl.textContent = '';
 
       timeLeft = 15;
-      timerEl.textContent = ⏳ Tempo: {timeLeft}s;
+      timerEl.textContent =  Tempo: {timeLeft}s;
 
       const max = parseInt(difficultyEl.value, 10) || 10;
       const operators = ['+', '-', 'X', '÷'];
@@ -166,7 +166,7 @@
       timerId = setInterval(() => {
         timeLeft--;
         if (timeLeft >= 0) {
-          timerEl.textContent = ⏳ Tempo: {timeLeft}s;
+          timerEl.textContent =  Tempo: {timeLeft}s;
         }
         if (timeLeft <= 0) {
           clearInterval(timerId);
