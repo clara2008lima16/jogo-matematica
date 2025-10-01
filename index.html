@@ -145,7 +145,7 @@
 
         function startTimer() {
             clearInterval(timer); // Clear any existing timer
-            timeLeft = 15;
+            timeLeft = 30;
             timerElement.textContent = ⏳ Tempo: ${timeLeft}s;
             timerElement.classList.remove('low-time');
 
@@ -164,7 +164,7 @@
             }, 1000);
         }
 
-        function generateQuestion(); {
+        function generateQuestion() {
             startTimer(); // Start the timer for the new question
             
             let max = parseInt(document.getElementById("difficulty").value);
