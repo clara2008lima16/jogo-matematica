@@ -146,12 +146,12 @@
         function startTimer() {
             clearInterval(timer); // Clear any existing timer
             timeLeft = 15;
-            timerElement.textContent = ⏳ Tempo: ${timeLeft}s;
+            timerElement.textContent = ⏳ Tempo: {timeLeft}s;
             timerElement.classList.remove('low-time');
 
             timer = setInterval(() => {
                 timeLeft--;
-                timerElement.textContent = ⏳ Tempo: ${timeLeft}s;
+                timerElement.textContent = ⏳ Tempo: {timeLeft}s;
                 if (timeLeft <= 5) {
                     timerElement.classList.add('low-time');
                 }
@@ -197,7 +197,7 @@
                 }
             }
 
-            document.getElementById("question").textContent = ${num1} ${operator} ${num2} = ?;
+            document.getElementById("question").textContent = {num1} {operator} {num2} = ?;
             answerInput.value = "";
             document.getElementById("feedback").textContent = "";
             answerInput.focus(); // Automatically focus on the input field
@@ -217,12 +217,12 @@
                 feedback.className = "correct";
                 score++;
             } else {
-                feedback.textContent = ❌ Errado! Resposta certa: ${correctAnswer};
+                feedback.textContent = ❌ Errado! Resposta certa: {correctAnswer};
                 feedback.className = "wrong";
                 score--;
             }
 
-            document.getElementById("score").textContent = Pontuação: ${score};
+            document.getElementById("score").textContent = Pontuação; {score};
         }
 
         function nextQuestion() {
